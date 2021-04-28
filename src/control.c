@@ -124,6 +124,9 @@ static void es_kill_pattern_notes(u8 pattern);
 
 void init_control(void) {
     load_shared_data_from_flash(&shared);
+	shared.i2c_mode = 1;
+	for (u8 i = 0; i < 6; i++) map_voice(i, VOICE_JF, i, 1);
+	mute_device(VOICE_JF, 0);
     update_i2c();
     
     preset = selected_preset = get_preset_index();
